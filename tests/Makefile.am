@@ -45,7 +45,9 @@ install_test_files:
 	    fi; \
 	  done \
 	done
-
+	@if test "${NTOQNX}" = "true"; then \
+	  $(INSTALL_DATA) $(PWD)/include/config.sh $(testdir)/include/config.sh; \
+	fi
 dist-hook:
 	$(MAKE)	INSTALL_TO_DIR="$(distdir)" install_test_files
 

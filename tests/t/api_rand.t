@@ -39,6 +39,6 @@ issue #96: sb_rand_uniq(1, oltp_table_size) generate duplicate value
   > end
   > EOF
 
-  $ sysbench $SB_ARGS --events=100000 $CRAMTMP/api_rand_uniq.lua run |
+  $ sysbench $SB_ARGS --events=100000 --time=9999 $CRAMTMP/api_rand_uniq.lua run |
   >   sort -n | uniq | wc -l | sed -e 's/ //g'
   100000

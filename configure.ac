@@ -121,6 +121,11 @@ then
 # TODO: Set flags for Gcov-enabled builds, if supported by Sun Studio
 fi
 
+# Check if we should compile for QNX
+AC_ARG_VAR(NTOQNX, compile for the QNX OS)
+
+# Check for QNX (automake)
+AM_CONDITIONAL([QNX], [test "x$NTOQNX" = xtrue])
 
 # Check if we should compile with MySQL support
 AC_ARG_WITH([mysql],
