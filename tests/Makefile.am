@@ -45,7 +45,7 @@ install_test_files:
 	    fi; \
 	  done \
 	done
-	@if test "${NTOQNX}" = "true"; then \
+	@if test "${QNXENV}" = "true"; then \
 	  $(INSTALL_DATA) $(PWD)/include/config.sh $(testdir)/include/config.sh; \
 	fi
 dist-hook:

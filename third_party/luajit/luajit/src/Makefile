@@ -190,7 +190,7 @@ ASOPTIONS= $(CCOPT) $(CCWARN) $(XCFLAGS) $(CFLAGS)
 CCOPTIONS= $(CCDEBUG) $(ASOPTIONS)
 LDOPTIONS= $(CCDEBUG) $(LDFLAGS)
 
-ifeq ($(NTOQNX), true)
+ifeq ($(QNXENV), true)
   HOST_CC=gcc
 else
   HOST_CC= $(CC)
@@ -633,7 +633,7 @@ depend:
 
 $(MINILUA_T): $(MINILUA_O)
 	$(E) "HOSTLINK  $@"
-ifeq ($(NTOQNX), true)
+ifeq ($(QNXENV), true)
 	$(Q)$(HOST_CC) -o $@ $(MINILUA_O) $(MINILUA_LIBS) $(HOST_ALIBS)
 else
 	$(Q)$(HOST_CC) $(HOST_ALDFLAGS) -o $@ $(MINILUA_O) $(MINILUA_LIBS) $(HOST_ALIBS)
@@ -647,7 +647,7 @@ host/buildvm.o: $(DASM_DIR)/dasm_*.h
 
 $(BUILDVM_T): $(BUILDVM_O)
 	$(E) "HOSTLINK  $@"
-ifeq ($(NTOQNX), true)
+ifeq ($(QNXENV), true)
 	$(Q)$(HOST_CC) -o $@ $(BUILDVM_O) $(HOST_ALIBS)
 else
 	$(Q)$(HOST_CC) $(HOST_ALDFLAGS) -o $@ $(BUILDVM_O) $(HOST_ALIBS)
@@ -701,7 +701,7 @@ $(LUAJIT_O):
 
 $(HOST_O): %.o: %.c
 	$(E) "HOSTCC    $@"
-ifeq ($(NTOQNX), true)
+ifeq ($(QNXENV), true)
 	$(Q)$(HOST_CC) $(filter-out -mlittle-endian, $(HOST_ACFLAGS)) -c -o $@ $<
 else
 	$(Q)$(HOST_CC) $(HOST_ACFLAGS) -c -o $@ $<
@@ -720,7 +720,7 @@ $(LUAJIT_A): $(LJVMCORE_O)
 # The dependency on _O, but linking with _DYNO is intentional.
 $(LUAJIT_SO): $(LJVMCORE_O)
 	$(E) "DYNLINK   $@"
-ifeq ($(NTOQNX), true)
+ifeq ($(QNXENV), true)
 	$(Q)$(TARGET_LD) $(TARGET_ASHLDFLAGS) -o $@ $(LJVMCORE_DYNO) $(filter-out -ldl, $(TARGET_ALIBS))
 else 
 	$(Q)$(TARGET_LD) $(TARGET_ASHLDFLAGS) -o $@ $(LJVMCORE_DYNO) $(TARGET_ALIBS)
@@ -729,7 +729,7 @@ endif
 
 $(LUAJIT_T): $(TARGET_O) $(LUAJIT_O) $(TARGET_DEP)
 	$(E) "LINK      $@"
-ifeq ($(NTOQNX), true)
+ifeq ($(QNXENV), true)
 	$(Q)$(TARGET_LD) $(TARGET_ALDFLAGS) -o $@ $(LUAJIT_O) $(TARGET_O) $(filter-out -ldl, $(TARGET_ALIBS))
 else
 	$(Q)$(TARGET_LD) $(TARGET_ALDFLAGS) -o $@ $(LUAJIT_O) $(TARGET_O) $(TARGET_ALIBS)

@@ -122,10 +122,10 @@ then
 fi
 
 # Check if we should compile for QNX
-AC_ARG_VAR(NTOQNX, compile for the QNX OS)
+AC_ARG_VAR(QNXENV, compile for the QNX OS)
 
 # Check for QNX (automake)
-AM_CONDITIONAL([QNX], [test "x$NTOQNX" = xtrue])
+AM_CONDITIONAL([QNX], [test "x$QNXENV" = xtrue])
 
 # Check if we should compile with MySQL support
 AC_ARG_WITH([mysql],

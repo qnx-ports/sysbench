@@ -25,7 +25,7 @@ $(builddir)/lib/libluajit-5.1.a:
 	mkdir tmp
 	tar -C $(srcdir) -cf - luajit | tar -xf - -C tmp/
 	chmod -R u+w tmp
-	@if test ${NTOQNX} == true; \
+	@if test ${QNXENV} == true; \
 	then \
 	  $(MAKE) -C tmp/luajit \
 			TARGET=POSIX \
