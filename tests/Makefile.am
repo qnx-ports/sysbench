@@ -45,6 +45,7 @@ install_test_files:
 	    fi; \
 	  done \
 	done
+
 	@if test "${QNXENV}" = "true"; then \
 	  $(INSTALL_DATA) $(PWD)/include/config.sh $(testdir)/include/config.sh; \
 	fi
